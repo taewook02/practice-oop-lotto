@@ -1,6 +1,7 @@
 package lotto.model.Implement;
 
 import java.util.List;
+import java.util.stream.Stream;
 import lotto.Data.WinRewardData;
 import lotto.model.Interface.WinResultStorage;
 import lotto.model.Lotto;
@@ -58,6 +59,15 @@ public class WinResultStorageImpl implements WinResultStorage {
         }
       }
     }
+  }
+
+  private void calculateWinResultStream(List<Lotto> lottoList, List<Integer> winNumbers, int bonusNumber) {
+    int accordWinNumber = 0;
+    int accordBonusNumber = 0;
+    Stream<Lotto> lottoStream = lottoList.stream();
+    lottoStream.forEach(lotto ->
+        lotto.getNumbers().stream().filter(winNumbers::contains)
+        );
   }
 
   private void calculateProfitRate() {
